@@ -27,13 +27,16 @@ class TodolistController extends Controller
     public function addTodo(Request $request)
     {
         $todo = $request->input('todo');
+        $todolist = $this->todolistService->getTodo();
 
         // validasi error
         if (empty($todo)) {
             return response()
                 ->view('todolist.todolist', [
                     'title' => 'Todolist',
-                    'error' => 'Todolist is Required'
+                    'error' => 'Todolist is Required',
+                    'todolist' => $todolist
+
                 ]);
         }
 
