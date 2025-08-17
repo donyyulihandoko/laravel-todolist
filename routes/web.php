@@ -23,7 +23,7 @@ Route::get('/template', function () {
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/login', 'login');
-    Route::post('/login', 'doLogin');
-    Route::post('/logout', 'doLogout');
+    Route::get('/login', 'login')->middleware(['guest']);
+    Route::post('/login', 'doLogin')->middleware(['guest']);
+    Route::post('/logout', 'doLogout')->middleware(['member']);
 });
